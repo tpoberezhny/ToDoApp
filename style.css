@@ -85,7 +85,7 @@ li {
 
 .filters span.active {
     color: #1e293b;
-    font-size: 20px;
+    font-size: 17px;
     text-decoration: underline;
 }
 
@@ -125,7 +125,7 @@ li {
 }
 
 .task-box::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
 }
 
 .task-box::-webkit-scrollbar-track {
