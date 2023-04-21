@@ -2,6 +2,7 @@ const taskInput = document.querySelector(".task-input input"),
     filters = document.querySelectorAll(".filters span"),
     clearAll = document.querySelector(".clear-btn"),
     taskBox = document.querySelector(".task-box");
+addBtn = document.querySelector(".add-btn")
 
 let editId,
     isEditTask = false,
@@ -14,6 +15,7 @@ filters.forEach(btn => {
         showTodo(btn.id);
     });
 });
+
 
 function showTodo(filter) {
     let liTag = "";
@@ -93,6 +95,23 @@ clearAll.addEventListener("click", () => {
 taskInput.addEventListener("keyup", e => {
     let userTask = taskInput.value.trim();
     if (e.key == "Enter" && userTask) {
+        if (!isEditTask) {
+            todos = !todos ? [] : todos;
+            let taskInfo = { name: userTask, status: "pending" };
+            todos.push(taskInfo);
+        } else {
+            isEditTask = false;
+            todos[editId].name = userTask;
+        }
+        taskInput.value = "";
+        localStorage.setItem("todo-list", JSON.stringify(todos));
+        showTodo(document.querySelector("span.active").id);
+    }
+});
+
+addBtn.addEventListener("click", () => {
+    let userTask = taskInput.value.trim();
+    if (userTask) {
         if (!isEditTask) {
             todos = !todos ? [] : todos;
             let taskInfo = { name: userTask, status: "pending" };
